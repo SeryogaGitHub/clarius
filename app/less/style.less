@@ -93,6 +93,9 @@
   .transition(@element: all, @time: .2s, @function: linear ) {
     transition: @element @time @function;
   }
+  .title{
+    margin-bottom: 12px;
+  }
   .btn {
     width: 100%;
     padding: 0 15px;
@@ -123,7 +126,7 @@
     width: 100%;
     margin: 0 auto;
   }
-  .dropdown{
+  #specialty-list{
     max-width: 298px;
     margin-top: 12px;
     position: relative;
@@ -168,7 +171,7 @@
         margin-top: 10px;
 
         .item{
-          margin-top: 8px;
+          margin-top: 9px;
           cursor: pointer;
         }
 
@@ -209,6 +212,7 @@
       border-radius: 10px;
       text-align: left;
       z-index: 2;
+      cursor: pointer;
 
       &:after{
         content: "";
@@ -223,10 +227,82 @@
       }
     }
   }
+  #filter-products{
+    border: 1px solid #d6d6d6;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px 19px;
+    min-height: 60px;
+  }
+  .step-2{
+    margin-left: 23px;
+  }
+  .checkbox{
+    display: flex;
+    align-items: center;
+
+    input{
+      & + label{
+        min-width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        border: 2px solid #707070;
+        .transition();
+
+        &:after{
+          background: #ffffff;
+          .transition();
+        }
+      }
+      &:checked{
+        & + label{
+          position: relative;
+          border-color: #FBA353;
+
+          &:after{
+            content: '';
+            position: absolute;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            background: url(../img/icons/check_on_light.svg) no-repeat center/cover;
+          }
+        }
+      }
+    }
+    label{
+      cursor: pointer;
+
+      & + label{
+        margin-left: 10px;
+      }
+      &::selection {
+        background: transparent;
+        color: #707070;
+      }
+    }
+    & + .checkbox{
+      margin-left: 37px;
+    }
+  }
   .constructor{
     margin-top: 21px;
+    display: flex;
+
+    .title{
+      display: flex;
+      align-items: center;
+
+      .step{
+        & + span{
+          margin-left: 5px;
+        }
+      }
+    }
   }
   .step.active{
-    color: #F57721;
+    color: #FBA353;
   }
 }

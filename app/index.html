@@ -15,13 +15,15 @@
 
       <div class="constructor">
         <div class="step-1">
-          <h3 class="step active">Step 1</h3>
+          <div class="title">
+            <h3 class="step">Step 1</h3>
+          </div>
 
-          <div class="dropdown">
+          <div id="specialty-list">
             <button class="toggle">Select your specialty</button>
 
             <div class="dropdown-container">
-              <input type="text" id="search-product" placeholder="Search">
+              <input type="text" id="search-product" placeholder="Search" autocomplete="off">
 
               <ul class="list">
                 <li class="item">Anesthesia</li>
@@ -48,7 +50,6 @@
                 <li class="item">OB/GYN</li>
                 <li class="item">Oncology</li>
                 <li class="item">Orthopaedic Surgery</li>
-                <li class="item">Orthopaedic Surgery</li>
                 <li class="item">Palliative Care</li>
                 <li class="item">Pelvic Rehabilitation</li>
                 <li class="item">Physiotherapy</li>
@@ -66,6 +67,34 @@
                 <li class="item">Veterinary Medicine</li>
               </ul>
             </div>
+          </div>
+        </div>
+
+        <div class="step-2">
+          <div class="title">
+            <h3 class="step active">Step 2</h3> <span>- Requirements? (Optional)</span>
+          </div>
+
+          <div id="filter-products">
+            <div class="checkbox">
+              <input type="checkbox" id="products-1" hidden>
+              <label for="products-1"></label>
+              <label for="products-1">Superficial</label>
+            </div>
+
+            <div class="checkbox">
+              <input type="checkbox" id="products-2" hidden>
+              <label for="products-2"></label>
+              <label for="products-2">Deep (Hip, Facts, Sciatic)</label>
+            </div>
+
+            <div class="checkbox">
+              <input type="checkbox" id="products-3" hidden>
+              <label for="products-3"></label>
+              <label for="products-3">Budget for 2 scanners</label>
+            </div>
+
+            <button class="next-btn">NEXT</button>
           </div>
         </div>
       </div>
