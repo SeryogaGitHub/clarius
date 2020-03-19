@@ -255,11 +255,11 @@ body{
     min-height: 60px;
 
     .inner{
-      margin: 0 -15px;
+      margin: 0 -12px;
       display: flex;
 
       & > *{
-        margin: 15px 11px;
+        margin: 15px 12px;
       }
     }
   }
@@ -320,10 +320,10 @@ body{
   .constructor{
     display: flex;
     flex-wrap: wrap;
-    margin: 21px -11px 0;
+    margin: 21px -12px 0;
 
     & > *{
-      margin: 15px 11px;
+      margin: 15px 12px;
     }
     .title{
       display: flex;
@@ -338,6 +338,88 @@ body{
   }
   .step.active{
     color: #FBA353;
+  }
+  #scanners-container{
+    margin: 30px -12px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    & > *{
+      margin: 15px 12px;
+    }
+    .link{
+      background: #FBA353;
+      text-decoration: none;
+      border-radius: 5px;
+      color: #fff;
+      height: 27px;
+      display: inline-flex;
+      font-size: 12px;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 138px;
+      padding: 0 10px;
+      .font-7;
+
+      svg{
+        height: 12px;
+      }
+    }
+    .scanner-item{
+      max-width: 446px;
+      box-shadow: 0 0 12px 0 rgba(0,0,0,.1);
+      border-radius: 10px;
+      padding: 0 7px 13px 13px;
+      display: flex;
+
+      .image{
+        width: 125px;
+        min-height: 125px;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      .title{
+        display: flex;
+        align-items: center;
+        margin-bottom: 7px;
+        font-size: 25px;
+
+        h2{
+          margin: 0 5px 0 0;
+        }
+      }
+      .info{
+        flex: 1 1;
+        padding-top: 10px;
+        padding-left: 13px;
+      }
+      .description{
+        font-size: 12px;
+        max-height: 34px;
+        overflow: hidden;
+        margin-bottom: 25px;
+      }
+    }
+    .preview{
+      padding: 0 25px;
+
+      h3{
+        .font-9;
+        color: #04162D;
+        margin-bottom: 8px;
+      }
+
+      li{
+        padding-left: 30px;
+        background: url(../img/icons/check-solid.svg) no-repeat left center/21px;
+
+        & + li{
+          margin-top: 8px;
+        }
+      }
+    }
   }
 }
 @media screen and (max-width: 768px) {
