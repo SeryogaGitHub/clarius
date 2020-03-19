@@ -1,19 +1,54 @@
 'use strict';
 
+let productChecked = {
+  anesthesia: {
+    checked1: ['l15'],
+    checked2: ['c3'],
+    checked12: ['l7'],
+    checked123: ['l15, c3'],
+  }
+};
+
 $(document).ready(function() {
   let $specialtyList = $('#specialty-list');
   let $dropdownContainer = $specialtyList.find('.dropdown-container');
+  let $scannersContainer = $('#scanners-container');
+  let $scannerItems = $scannersContainer.children('.scanner-item');
 
   let closeDropdown = () => {
     $dropdownContainer.stop().slideUp();
-    $specialtyList.removeClass('active');
+    $specialtyList.removeClass('open');
   };
 
   // відкриття dropdown
   $('#specialty-list .toggle').on("click", function (e) {
     $dropdownContainer.stop().slideToggle();
-    $specialtyList.toggleClass('active');
+    $specialtyList.toggleClass('open');
   });
+
+  // показати відповідний товар
+  let showChangeItem = (item) => {
+    let id = item.attr('data-id');
+
+    $scannerItems.each(function () {
+      let scanner = $(this);
+      let scannerId = scanner.attr('data-id');
+
+      if(scannerId === id){
+        scanner.show();
+      } else {
+        scanner.hide();
+      }
+    });
+  };
+
+  // показати редагування вибіру товарів
+  let showCheckboxItems = (item) => {
+    let checkbox = item.attr('data-checked');
+
+    $('.step-1').removeClass('active');
+    $('.step-2').addClass('active');
+  };
 
   // змінана назви товара в кнопці
   $('#specialty-list .item').on("click", function (e) {
@@ -21,8 +56,21 @@ $(document).ready(function() {
     let text = $this.text();
     let $dropdown = $(this).parents('#specialty-list');
 
-    closeDropdown();
     $dropdown.find('.toggle').text(text);
+
+    closeDropdown();
+
+    if($this.hasClass('checkbox')){
+      showCheckboxItems($this);
+    } else {
+      showChangeItem($this);
+    }
+  });
+
+  $('#filter-products').on('mouseup', function () {
+    let checked1 = $(this).find('#products-1');
+    console.log(checked1.prop("checked"));
+    console.log(checked1);
   });
 
   // serch

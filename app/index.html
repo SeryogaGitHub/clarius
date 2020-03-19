@@ -14,9 +14,9 @@
       <p>Discover the Clarius scanner that’s ideal for you</p>
 
       <div class="constructor">
-        <div class="step-1">
+        <div class="step-1 step active">
           <div class="title">
-            <h3 class="step">Step 1</h3>
+            <h3>Step 1</h3>
           </div>
 
           <div id="specialty-list">
@@ -26,9 +26,9 @@
               <input type="text" id="search-product" placeholder="Search" autocomplete="off">
 
               <ul class="list">
-                <li class="item">Anesthesia</li>
-                <li class="item">Bedside Cardiac</li>
-                <li class="item">Breast</li>
+                <li class="item checkbox" data-checked="anesthesia">Anesthesia</li>
+                <li class="item" data-id="pa">Bedside Cardiac</li>
+                <li class="item" data-id="l15">Breast</li>
                 <li class="item">Breast Surgery</li>
                 <li class="item">Chiropractic</li>
                 <li class="item">Chronic Pain</li>
@@ -70,9 +70,9 @@
           </div><!-- #specialty-list -->
         </div><!-- .step-1 -->
 
-        <div class="step-2">
+        <div class="step-2 step">
           <div class="title">
-            <h3 class="step active">Step 2</h3> <span>- Requirements? (Optional)</span>
+            <h3>Step 2</h3> <span>- Requirements? (Optional)</span>
           </div>
 
           <div id="filter-products">
@@ -95,62 +95,118 @@
                 <label for="products-3">Budget for 2 scanners</label>
               </div>
             </div>
+
+            <div class="wrap-btn-next">
+              <button class="next-btn">
+                NEXT
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
+                  <path id="chevron-right-solid" d="M40.126,49.179,30.61,58.694a1.175,1.175,0,0,1-1.662,0l-1.11-1.11a1.175,1.175,0,0,1,0-1.66l7.541-7.577-7.541-7.577a1.175,1.175,0,0,1,0-1.66L28.948,38a1.175,1.175,0,0,1,1.662,0l9.516,9.516A1.175,1.175,0,0,1,40.126,49.179Z" transform="translate(-27.495 -37.657)" fill="#fff"/>
+                </svg>
+              </button><!-- .next-btn -->
+            </div>
           </div>
         </div><!-- .step-2 -->
-
-        <button class="next-btn">
-          NEXT
-
-          <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
-            <path id="chevron-right-solid" d="M40.126,49.179,30.61,58.694a1.175,1.175,0,0,1-1.662,0l-1.11-1.11a1.175,1.175,0,0,1,0-1.66l7.541-7.577-7.541-7.577a1.175,1.175,0,0,1,0-1.66L28.948,38a1.175,1.175,0,0,1,1.662,0l9.516,9.516A1.175,1.175,0,0,1,40.126,49.179Z" transform="translate(-27.495 -37.657)" fill="#fff"/>
-          </svg>
-        </button><!-- .next-btn -->
       </div><!-- .constructor -->
 
       <div id="scanners-container">
-        <div class="scanner-item">
-          <div class="image" style="background-image: url(img/scanners/c3.png);"></div>
+        <div class="scanner-item" data-id="c3">
+          <div class="wrap">
+            <div class="image" style="background-image: url(img/scanners/c3.png);"></div>
 
-          <div class="info">
-            <div class="title">
-              <h2>C3 HD</h2>
-              <span>- Multipurpose</span>
+            <div class="info">
+              <div class="title">
+                <h2>C3 HD</h2>
+                <span>- Multipurpose</span>
+              </div>
+
+              <p class="description">
+                The C3HD convex array scanner is ideal for abdominal and OB/GYN imaging, as well as FAST exams and deep superficial such as DVT.
+              </p>
+
+              <a href="#" class="link">
+                Learn More
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
+                  <path id="chevron-right-solid" d="M40.126,49.179,30.61,58.694a1.175,1.175,0,0,1-1.662,0l-1.11-1.11a1.175,1.175,0,0,1,0-1.66l7.541-7.577-7.541-7.577a1.175,1.175,0,0,1,0-1.66L28.948,38a1.175,1.175,0,0,1,1.662,0l9.516,9.516A1.175,1.175,0,0,1,40.126,49.179Z" transform="translate(-27.495 -37.657)" fill="#fff"/>
+                </svg>
+              </a>
             </div>
-
-            <p class="description">
-              The C3HD convex array scanner is ideal for abdominal and OB/GYN imaging, as well as FAST exams and deep superficial such as DVT.
-            </p>
-
-            <a href="#" class="link">
-              Learn More
-
-              <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
-                <path id="chevron-right-solid" d="M40.126,49.179,30.61,58.694a1.175,1.175,0,0,1-1.662,0l-1.11-1.11a1.175,1.175,0,0,1,0-1.66l7.541-7.577-7.541-7.577a1.175,1.175,0,0,1,0-1.66L28.948,38a1.175,1.175,0,0,1,1.662,0l9.516,9.516A1.175,1.175,0,0,1,40.126,49.179Z" transform="translate(-27.495 -37.657)" fill="#fff"/>
-              </svg>
-            </a>
           </div>
         </div>
 
-        <div class="scanner-item">
-          <div class="image" style="background-image: url(img/scanners/l15.png);"></div>
+        <div class="scanner-item" data-id="l15">
+          <div class="wrap">
+            <div class="image" style="background-image: url(img/scanners/l15.png);"></div>
 
-          <div class="info">
-            <div class="title">
-              <h2>L15 HD</h2>
-              <span> - High Frequency</span>
+            <div class="info">
+              <div class="title">
+                <h2>L15 HD</h2>
+                <span> - High Frequency</span>
+              </div>
+
+              <p class="description">
+                The L15HD, with a bandwidth from 5 to 15MHz, provides outstanding detail resolution down to 5cm.
+              </p>
+
+              <a href="#" class="link">
+                Learn More
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
+                  <path id="chevron-right-solid" d="M40.126,49.179,30.61,58.694a1.175,1.175,0,0,1-1.662,0l-1.11-1.11a1.175,1.175,0,0,1,0-1.66l7.541-7.577-7.541-7.577a1.175,1.175,0,0,1,0-1.66L28.948,38a1.175,1.175,0,0,1,1.662,0l9.516,9.516A1.175,1.175,0,0,1,40.126,49.179Z" transform="translate(-27.495 -37.657)" fill="#fff"/>
+                </svg>
+              </a>
             </div>
+          </div>
+        </div>
 
-            <p class="description">
-              The L15HD, with a bandwidth from 5 to 15MHz, provides outstanding detail resolution down to 5cm.
-            </p>
+        <div class="scanner-item" data-id="pa">
+          <div class="wrap">
+            <div class="image" style="background-image: url(img/scanners/pa.png);"></div>
 
-            <a href="#" class="link">
-              Learn More
+            <div class="info">
+              <div class="title">
+                <h2>PA HD</h2>
+                <span> - Phased Array</span>
+              </div>
 
-              <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
-                <path id="chevron-right-solid" d="M40.126,49.179,30.61,58.694a1.175,1.175,0,0,1-1.662,0l-1.11-1.11a1.175,1.175,0,0,1,0-1.66l7.541-7.577-7.541-7.577a1.175,1.175,0,0,1,0-1.66L28.948,38a1.175,1.175,0,0,1,1.662,0l9.516,9.516A1.175,1.175,0,0,1,40.126,49.179Z" transform="translate(-27.495 -37.657)" fill="#fff"/>
-              </svg>
-            </a>
+              <p class="description">
+                The PA HD Phased Array scanner, with pulse inversion harmonics and imaging capabilities down to 40 cm, is ideal for cardiac and abdominal imaging, including on difficult patients.
+              </p>
+
+              <a href="#" class="link">
+                Learn More
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
+                  <path id="chevron-right-solid" d="M40.126,49.179,30.61,58.694a1.175,1.175,0,0,1-1.662,0l-1.11-1.11a1.175,1.175,0,0,1,0-1.66l7.541-7.577-7.541-7.577a1.175,1.175,0,0,1,0-1.66L28.948,38a1.175,1.175,0,0,1,1.662,0l9.516,9.516A1.175,1.175,0,0,1,40.126,49.179Z" transform="translate(-27.495 -37.657)" fill="#fff"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="scanner-item" data-id="l7">
+          <div class="wrap">
+            <div class="image" style="background-image: url(img/scanners/pa.png);"></div>
+
+            <div class="info">
+              <div class="title">
+                <h2>L7 HD</h2>
+                <span> - Linear</span>
+              </div>
+
+              <p class="description">
+                The L7 HD scanner, with a frequency range from 4 MHz to 13 MHz, is ideal for vascular exams.
+              </p>
+
+              <a href="#" class="link">
+                Learn More
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
+                  <path id="chevron-right-solid" d="M40.126,49.179,30.61,58.694a1.175,1.175,0,0,1-1.662,0l-1.11-1.11a1.175,1.175,0,0,1,0-1.66l7.541-7.577-7.541-7.577a1.175,1.175,0,0,1,0-1.66L28.948,38a1.175,1.175,0,0,1,1.662,0l9.516,9.516A1.175,1.175,0,0,1,40.126,49.179Z" transform="translate(-27.495 -37.657)" fill="#fff"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 

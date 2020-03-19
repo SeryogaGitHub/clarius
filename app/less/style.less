@@ -55,6 +55,7 @@ body{
   background: #ffffff;
   color: #707070;
   font-size: 20px;
+  padding-top: 40px;
 
   *{
     .font-4;
@@ -151,8 +152,10 @@ body{
     border-radius: 5px 5px 0 0;
     .transition();
 
-    &.active{
+    &.open{
       box-shadow: 0 0 13px 6px rgba(162, 162, 162, 0.25);
+      background: #ffffff;
+
       .toggle{
         border-color: transparent;
         border-radius: 10px 10px 0 0;
@@ -219,7 +222,7 @@ body{
       }
     }
     .toggle{
-      background: #ffffff;
+      background: #F0F0F0;
       border: 1px solid #D6D6D6;
       width: 100%;
       height: 60px;
@@ -249,14 +252,16 @@ body{
     }
   }
   #filter-products{
-    border: 1px solid #d6d6d6;
-    border-radius: 10px;
-    padding: 0px 19px;
-    min-height: 60px;
+    display: flex;
+    flex-wrap: wrap;
 
     .inner{
-      margin: 0 -12px;
+      margin-right: 24px;
       display: flex;
+      border: 1px solid #d6d6d6;
+      border-radius: 10px;
+      padding: 0 4px;
+      min-height: 60px;
 
       & > *{
         margin: 15px 12px;
@@ -265,6 +270,11 @@ body{
   }
   .step-2{
     flex: 1 1;
+    display: none;
+
+    &.active{
+      display: block;
+    }
   }
   .checkbox{
     display: flex;
@@ -329,24 +339,28 @@ body{
       display: flex;
       align-items: center;
 
-      .step{
-        & + span{
-          margin-left: 5px;
-        }
+      h3{
+        margin-right: 5px;
       }
     }
   }
   .step.active{
-    color: #FBA353;
+    h3{
+      color: #FBA353;
+    }
+
+    #specialty-list .toggle{
+      background: #ffffff;
+    }
   }
   #scanners-container{
-    margin: 30px -12px 0;
+    margin: 37px -12px 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 
     & > *{
-      margin: 15px 12px;
+      margin: 0 12px 39px;
     }
     .link{
       background: #FBA353;
@@ -367,11 +381,15 @@ body{
       }
     }
     .scanner-item{
-      max-width: 446px;
-      box-shadow: 0 0 12px 0 rgba(0,0,0,.1);
-      border-radius: 10px;
-      padding: 0 7px 13px 13px;
-      display: flex;
+      display: none;
+
+      .wrap{
+        max-width: 446px;
+        box-shadow: 0 0 12px 0 rgba(0,0,0,.1);
+        border-radius: 10px;
+        padding: 0 7px 13px 13px;
+        display: flex;
+      }
 
       .image{
         width: 125px;
@@ -404,6 +422,7 @@ body{
     }
     .preview{
       padding: 0 25px;
+      display: none;
 
       h3{
         .font-9;
@@ -465,12 +484,33 @@ body{
 }
 @media screen and (max-width: 540px){
   #product-advisor {
+    h2{
+      font-size: 20px;
+    }
     .step-1{
       flex: 1 1;
     }
     #specialty-list{
       min-width: initial;
       width: 100%;
+    }
+    #scanners-container{
+      margin-top: 0;
+
+      .scanner-item{
+        display: block;
+        max-width: initial;
+
+        .image{
+          margin: 0 auto;
+        }
+        .title{
+          font-size: 16px;
+        }
+        .info{
+          padding-left: 0;
+        }
+      }
     }
   }
 }
