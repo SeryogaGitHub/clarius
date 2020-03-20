@@ -128,22 +128,36 @@ body{
     margin: 0 auto;
   }
   .next-btn{
-    background: #FBA353;
+    background: #F0F0F0;
     border: none;
     height: 60px;
     min-width: 116px;
-    color: #ffffff;
     font-size: 20px;
     border-radius: 10px;
     cursor: pointer;
     align-self: flex-end;
     align-items: center;
     display: flex;
+    color: #C1C1C1;
     justify-content: center;
     .font-7;
+    .transition();
 
+    &.active{
+      color: #ffffff;
+      background: #FBA353;
+
+      svg path{
+        fill: #ffffff;
+      }
+    }
     svg{
       margin-left: 10px;
+
+      path{
+        fill: #C1C1C1;
+        .transition();
+      }
     }
   }
   #specialty-list{
@@ -159,6 +173,7 @@ body{
       .toggle{
         border-color: transparent;
         border-radius: 10px 10px 0 0;
+        background: #ffffff;
       }
       .dropdown-container{
         box-shadow: 0 0 13px 6px rgba(162, 162, 162, 0.25);
@@ -262,6 +277,7 @@ body{
       border-radius: 10px;
       padding: 0 4px;
       min-height: 60px;
+      margin-bottom: 15px;
 
       & > *{
         margin: 15px 12px;
@@ -271,6 +287,7 @@ body{
   .step-2{
     flex: 1 1;
     display: none;
+    margin-bottom: 0!important;
 
     &.active{
       display: block;
@@ -280,6 +297,13 @@ body{
     display: flex;
     align-items: center;
 
+    &.checkbox-3{
+      display: none;
+
+      &.active{
+        display: flex;
+      }
+    }
     input{
       & + label{
         min-width: 18px;
@@ -470,8 +494,6 @@ body{
       }
     }
     #filter-products{
-      padding: 5px 15px;
-
       .inner{
         flex-direction: column;
 
@@ -498,8 +520,10 @@ body{
       margin-top: 0;
 
       .scanner-item{
-        display: block;
-        max-width: initial;
+        .wrap{
+          display: block;
+          max-width: initial;
+        }
 
         .image{
           margin: 0 auto;

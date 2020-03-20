@@ -26,13 +26,13 @@
               <input type="text" id="search-product" placeholder="Search" autocomplete="off">
 
               <ul class="list">
-                <li class="item checkbox" data-checked="anesthesia">Anesthesia</li>
+                <li class="item checkbox-list" data-checked="anesthesia">Anesthesia</li>
                 <li class="item" data-id="pa">Bedside Cardiac</li>
                 <li class="item" data-id="l15">Breast</li>
-                <li class="item">Breast Surgery</li>
-                <li class="item">Chiropractic</li>
-                <li class="item">Chronic Pain</li>
-                <li class="item">Critical Care</li>
+                <li class="item" data-id="l15">Breast Surgery</li>
+                <li class="item checkbox-list" data-checked="anesthesia">Chiropractic</li>
+                <li class="item checkbox-list" data-checked="anesthesia">Chronic Pain</li>
+                <li class="item one-checkbox" data-checked="criticalCare">Critical Care</li>
                 <li class="item">Emergency Medicine</li>
                 <li class="item">EMS</li>
                 <li class="item">Endocrinology</li>
@@ -80,24 +80,24 @@
               <div class="checkbox">
                 <input type="checkbox" id="products-1" hidden>
                 <label for="products-1"></label>
-                <label for="products-1">Superficial</label>
+                <label for="products-1" id="label-products-1">Superficial</label>
               </div>
 
               <div class="checkbox">
                 <input type="checkbox" id="products-2" hidden>
                 <label for="products-2"></label>
-                <label for="products-2">Deep (Hip, Facts, Sciatic)</label>
+                <label for="products-2" id="label-products-2">Deep (Hip, Facts, Sciatic)</label>
               </div>
 
-              <div class="checkbox">
+              <div class="checkbox checkbox-3">
                 <input type="checkbox" id="products-3" hidden>
                 <label for="products-3"></label>
-                <label for="products-3">Budget for 2 scanners</label>
+                <label for="products-3" id="label-products-3">Budget for 2 scanners</label>
               </div>
             </div>
 
             <div class="wrap-btn-next">
-              <button class="next-btn">
+              <button class="next-btn active">
                 NEXT
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="12.976" height="21.381" viewBox="0 0 12.976 21.381">
