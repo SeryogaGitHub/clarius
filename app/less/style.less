@@ -199,6 +199,7 @@ body{
       padding: 0 29px 26px;
       background: #ffffff;
       display: none;
+      z-index: 2;
       border-radius: 0 0 5px 5px;
 
       .list{
@@ -247,7 +248,7 @@ body{
       padding: 0 60px 0 29px;
       border-radius: 10px;
       text-align: left;
-      z-index: 2;
+      z-index: 3;
       cursor: pointer;
       white-space: nowrap;
       overflow: hidden;
@@ -294,16 +295,13 @@ body{
     }
   }
   .checkbox{
-    display: flex;
     align-items: center;
+    display: none;
 
-    &.checkbox-3{
-      display: none;
-
-      &.active{
-        display: flex;
-      }
+    &.active{
+      display: flex;
     }
+
     input{
       & + label{
         min-width: 18px;
@@ -407,12 +405,18 @@ body{
     .scanner-item{
       display: none;
 
+      &:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
       .wrap{
         max-width: 446px;
         box-shadow: 0 0 12px 0 rgba(0,0,0,.1);
         border-radius: 10px;
         padding: 0 7px 13px 13px;
         display: flex;
+        float: left;
       }
 
       .image{
@@ -446,7 +450,7 @@ body{
     }
     .preview{
       padding: 0 25px;
-      display: none;
+      float: left;
 
       h3{
         .font-9;

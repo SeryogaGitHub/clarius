@@ -24,6 +24,22 @@ let productChecked = {
     },
     checkedNull: 'c3',
   },
+  generalSurgery: {
+    checked1: {
+      title: 'Superficial',
+      products: 'l15'
+    },
+    checked2: {
+      title: 'Deep (>5cm)',
+      products: 'c3'
+    },
+    checked3: {
+      title: 'Budget for 2 scanners',
+    },
+    checked12: 'c3',
+    checked123First: 'l15',
+    checked123Next: 'c3',
+  },
 };
 
 $(document).ready(function() {
@@ -38,6 +54,11 @@ $(document).ready(function() {
   let checked1 = $('#products-1');
   let checked2 = $('#products-2');
   let checked3 = $('#products-3');
+  let $nextBtn = $('.next-btn');
+  let activeCheckbox = "";
+  let $checkbox1 = $filterProducts.find('.checkbox-1');
+  let $checkbox2 = $filterProducts.find('.checkbox-2');
+  let $checkbox3 = $filterProducts.find('.checkbox-3');
 
   let closeDropdown = () => {
     $dropdownContainer.stop().slideUp();
@@ -54,18 +75,12 @@ $(document).ready(function() {
     $step2.removeClass('active');
   };
 
-  // відкриття dropdown
-  $specialtyList.on("click", '.toggle', function (e) {
-    $dropdownContainer.stop().slideToggle();
-    $specialtyList.toggleClass('open');
-  });
-
-  let scannerEach = (id) => {
+  let scannerEach = (id, id2) => {
     $scannerItems.each(function () {
       let scanner = $(this);
       let scannerId = scanner.attr('data-id');
 
-      if(scannerId === id){
+      if(scannerId === id || scannerId === id2){
         scanner.show();
       } else {
         scanner.hide();
@@ -76,89 +91,77 @@ $(document).ready(function() {
   // показати відповідний товар
   let showChangeItem = (item) => {
     let id = item.attr('data-id');
+    let id2 = item.attr('data-id-2');
 
-    scannerEach(id);
+    scannerEach(id, id2);
   };
 
-  // показати редагування вибіру товарів
-  let showCheckboxItems = (item) => {
-    productName = item.attr('data-checked');
-
+  // показати назви вибіро товарів трьох
+  let showCheckboxItems = () => {
     $('#label-products-1').text(productChecked[productName].checked1.title);
     $('#label-products-2').text(productChecked[productName].checked2.title);
     $('#label-products-3').text(productChecked[productName].checked3.title);
   };
 
-  // зміна назви товара в перемикачі, відображення відповідного вибраного товару
-  $specialtyList.on("click", '.item', function (e) {
-    let $this = $(this);
-    let text = $this.text();
-    let $dropdown = $(this).parents('#specialty-list');
+  // показати назви вибіро товарів одного і приховує немотрібні чекбокси
+  let showCheckboxOne = () => {
+    $('#label-products-1').text(productChecked[productName].checked1.title);
 
-    // приховати всі елементи
-    $scannerItems.hide();
+    $checkbox1.removeClass('active');
+    $checkbox2.removeClass('active');
+  };
 
-    $('.next-btn').addClass('active');
-    checked1.attr("checked", false);
-    checked2.attr("checked", false);
-    checked3.attr("checked", false);
-
-    // зміна назви товара в перемикачі
-    $dropdown.find('.toggle').text(text);
-
-    closeDropdown();
-
-    if($this.hasClass('checkbox-list')){
-      twoStepActive();
-      showCheckboxItems($this);
-    } else if($this.hasClass('one-checkbox')) {
-      twoStepActive();
-      oneShowDetailItems();
-    } else {
-      firstStepActive();
-      showChangeItem($this);
-    }
+  // відкриття dropdown
+  $specialtyList.on("click", '.toggle', function (e) {
+    $dropdownContainer.stop().slideToggle();
+    $specialtyList.toggleClass('open');
   });
 
-  // показати товари вобору
+  // показати товари вобору трьох товарів
   let showDetailItems = () => {
     let $checkbox3 = $filterProducts.find('.checkbox-3');
+    let id = "";
 
     $scannerItems.hide();
 
     if(!checked1.is(":checked") && !checked2.is(":checked") && !checked3.is(":checked")){
-      let id = productChecked[productName].checked1.products;
+      id = productChecked[productName].checked1.products;
       $checkbox3.removeClass('active');
       checked3.attr('checked', false);
 
-      $(`.scanner-item[data-id=${id}`).show();
+      if(!$nextBtn.hasClass('active')){
+        $(`.scanner-item[data-id=${id}`).show();
+      }
       return;
     }
 
     if(checked1.is(":checked") && checked2.is(":checked") && checked3.is(":checked")){
       let idFirst = productChecked[productName].checked123First;
       let idNext = productChecked[productName].checked123Next;
+      id = productChecked[productName].checked1.products;
 
       $checkbox3.addClass('active');
 
-      $(`.scanner-item[data-id=${idFirst}`).show();
-      $(`.scanner-item[data-id=${idNext}`).show();
+      if(!$nextBtn.hasClass('active')) {
+        $(`.scanner-item[data-id=${idFirst}`).show();
+        $(`.scanner-item[data-id=${idNext}`).show();
+      }
     } else if(checked1.is(":checked") && !checked2.is(":checked")){
-      let id = productChecked[productName].checked1.products;
+      id = productChecked[productName].checked1.products;
       $checkbox3.removeClass('active');
       checked3.attr('checked', false);
 
-      $(`.scanner-item[data-id=${id}`).show();
     } else if(!checked1.is(":checked") && checked2.is(":checked")){
-      let id = productChecked[productName].checked2.products;
+      id = productChecked[productName].checked2.products;
       $checkbox3.removeClass('active');
       checked3.attr('checked', false);
 
-      $(`.scanner-item[data-id=${id}`).show();
     } else if(checked1.is(":checked") && checked2.is(":checked")){
-      let id = productChecked[productName].checked12;
+      id = productChecked[productName].checked12;
       $checkbox3.addClass('active');
+    }
 
+    if(!$nextBtn.hasClass('active')){
       $(`.scanner-item[data-id=${id}`).show();
     }
   };
@@ -171,28 +174,78 @@ $(document).ready(function() {
     if(checked1.is(":checked")){
       id = productChecked[productName].checked1.products;
     } else {
-      id = productChecked[productName].checkedNull.products;
+      id = productChecked[productName].checkedNull;
     }
 
-    $(`.scanner-item[data-id=${id}`).show();
+    if(!$nextBtn.hasClass('active')){
+      $(`.scanner-item[data-id=${id}`).show();
+    }
   };
 
+  // зміна назви товара в перемикачі, відображення відповідного вибраного товару
+  $specialtyList.on("click", '.item', function (e) {
+    let $this = $(this);
+    let text = $this.text();
+    let $dropdown = $(this).parents('#specialty-list');
+
+    // добавляємо назву продукда для пошуку по обєкту
+    productName = $this.attr('data-checked');
+
+    // приховати всі елементи
+    $scannerItems.hide();
+
+    // відновлює дефолтне значення елементів
+    $nextBtn.addClass('active');
+    checked1.attr("checked", false);
+    checked2.attr("checked", false);
+    checked3.attr("checked", false);
+    $checkbox2.addClass("active");
+    $checkbox3.removeClass("active");
+
+
+    // зміна назви товара в перемикачі
+    $dropdown.find('.toggle').text(text);
+
+    closeDropdown();
+
+    if($this.hasClass('checkbox-list')){
+      // присвоюємо значення для методів вибору
+      activeCheckbox = "checkboxList";
+      twoStepActive();
+      showCheckboxItems();
+    } else if($this.hasClass('one-checkbox')) {
+      activeCheckbox = "oneCheckbox";
+      twoStepActive();
+      showCheckboxOne();
+    } else {
+      firstStepActive();
+      showChangeItem($this);
+    }
+  });
+
   // клік по кнопці активній кнопці next-btn
-  $filterProducts.on('click', '.next-btn.active', function (e) {
+  $filterProducts.on('click', '.next-btn.active', function () {
     $(this).removeClass('active');
-    showDetailItems();
+
+    if(activeCheckbox === "checkboxList"){
+      showDetailItems();
+    } else if(activeCheckbox === "oneCheckbox"){
+      oneShowDetailItems();
+    }
   });
 
   // перемикання по checkbox
   $filterProducts.on('click', '.checkbox', function () {
-    if(!$('.next-btn').hasClass('active')){
+    if(activeCheckbox === "checkboxList"){
       showDetailItems();
+    } else if(activeCheckbox === "oneCheckbox"){
+      oneShowDetailItems();
     }
   });
 
   // serch
   $('#search-product').on("keyup", function (e) {
-    document.querySelector('.next-btn').className = 'active';
+    $nextBtn.addClass('active');
 
     let val = $(this).val();
     val = val.toLowerCase();
