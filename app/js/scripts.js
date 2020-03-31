@@ -2,6 +2,7 @@
 
 let productChecked = {
   anesthesia: {
+    default: ['l15'],
     checked1: {
       title: 'Superficial',
       products: 'l15'
@@ -18,6 +19,7 @@ let productChecked = {
     checked123Next: 'c3',
   },
   criticalCare: {
+    default: ['c3'],
     checked1: {
       title: 'Mostly cardiac',
       products: 'pa'
@@ -25,6 +27,7 @@ let productChecked = {
     checkedNull: 'c3',
   },
   generalSurgery: {
+    default: ['l15'],
     checked1: {
       title: 'Superficial',
       products: 'l15'
@@ -40,6 +43,25 @@ let productChecked = {
     checked123First: 'l15',
     checked123Next: 'c3',
   },
+  veterinaryMedicine: {
+    default: ['c7vet', 'l7vet', 'c3vet'],
+    checked1: {
+      title: 'Small animals',
+      products: 'c7vet'
+    },
+    checked2: {
+      title: 'Large animals',
+      products: 'c3vet'
+    },
+    checked3: {
+      title: 'Equine tendons',
+      products: 'l7vet'
+    },
+    checked12: ['c7vet', 'c3vet'],
+    checked13: ['c7vet', 'l7vet'],
+    checked23: ['c3vet', 'l7vet'],
+    checked123: ['c7vet', 'l7vet', 'c3vet']
+  },
 };
 
 $(document).ready(function() {
@@ -54,7 +76,6 @@ $(document).ready(function() {
   let checked1 = $('#products-1');
   let checked2 = $('#products-2');
   let checked3 = $('#products-3');
-  let $nextBtn = $('.next-btn');
   let activeCheckbox = "";
   let $checkbox1 = $filterProducts.find('.checkbox-1');
   let $checkbox2 = $filterProducts.find('.checkbox-2');
@@ -96,7 +117,15 @@ $(document).ready(function() {
     scannerEach(id, id2);
   };
 
-  // показати назви вибіро товарів трьох
+  const showScanners = (scanners) => {
+    let id = [...scanners];
+
+    id.forEach(id => {
+      return $(`.scanner-item[data-id=${id}`).show();
+    })
+  };
+
+  // показати назви вибір товарів трьох
   let showCheckboxItems = () => {
     $('#label-products-1').text(productChecked[productName].checked1.title);
     $('#label-products-2').text(productChecked[productName].checked2.title);
@@ -119,7 +148,6 @@ $(document).ready(function() {
 
   // показати товари вобору трьох товарів
   let showDetailItems = () => {
-    let $checkbox3 = $filterProducts.find('.checkbox-3');
     let id = "";
 
     $scannerItems.hide();
@@ -129,9 +157,7 @@ $(document).ready(function() {
       $checkbox3.removeClass('active');
       checked3.attr('checked', false);
 
-      if(!$nextBtn.hasClass('active')){
-        $(`.scanner-item[data-id=${id}`).show();
-      }
+      $(`.scanner-item[data-id=${id}`).show();
       return;
     }
 
@@ -142,10 +168,8 @@ $(document).ready(function() {
 
       $checkbox3.addClass('active');
 
-      if(!$nextBtn.hasClass('active')) {
-        $(`.scanner-item[data-id=${idFirst}`).show();
-        $(`.scanner-item[data-id=${idNext}`).show();
-      }
+      $(`.scanner-item[data-id=${idFirst}`).show();
+      $(`.scanner-item[data-id=${idNext}`).show();
     } else if(checked1.is(":checked") && !checked2.is(":checked")){
       id = productChecked[productName].checked1.products;
       $checkbox3.removeClass('active');
@@ -161,9 +185,58 @@ $(document).ready(function() {
       $checkbox3.addClass('active');
     }
 
-    if(!$nextBtn.hasClass('active')){
-      $(`.scanner-item[data-id=${id}`).show();
+    $(`.scanner-item[data-id=${id}`).show();
+  };
+
+  const defoultActive = () => {
+    if(activeCheckbox !== "checkboxListVet"){
+      if(!checked1.is(":checked") && !checked2.is(":checked") && !checked3.is(":checked")){
+        $this.prop('checked', true);
+        console.log(checked1);
+        e.preventDefault();
+      }
     }
+  };
+
+  // показати товари вобору трьох товарів
+  let showDetailItemsVet = () => {
+    let id = "";
+
+    $scannerItems.hide();
+
+    if(!checked1.is(":checked") && !checked2.is(":checked") && !checked3.is(":checked")){
+      showScanners(productChecked[productName].default);
+      return;
+    }
+
+    if(checked1.is(":checked") && !checked2.is(":checked") && !checked3.is(":checked")){
+      id = productChecked[productName].checked1.products;
+
+    } else if(!checked1.is(":checked") && checked2.is(":checked") && !checked3.is(":checked")){
+      id = productChecked[productName].checked2.products;
+
+    } else if(!checked1.is(":checked") && !checked2.is(":checked") && checked3.is(":checked")){
+      id = productChecked[productName].checked3.products;
+
+    } else if(checked1.is(":checked") && checked2.is(":checked") && !checked3.is(":checked")){
+      showScanners(productChecked[productName].checked12);
+
+      return;
+    } else if(checked1.is(":checked") && !checked2.is(":checked") && checked3.is(":checked")){
+      showScanners(productChecked[productName].checked13);
+
+      return;
+    } else if(!checked1.is(":checked") && checked2.is(":checked") && checked3.is(":checked")){
+      showScanners(productChecked[productName].checked23);
+
+      return;
+    } else if(checked1.is(":checked") && checked2.is(":checked") && checked3.is(":checked")){
+      showScanners(productChecked[productName].checked123);
+
+      return;
+    }
+
+    $(`.scanner-item[data-id=${id}`).show();
   };
 
   // показати товари вобору де є один варіант
@@ -177,9 +250,7 @@ $(document).ready(function() {
       id = productChecked[productName].checkedNull;
     }
 
-    if(!$nextBtn.hasClass('active')){
-      $(`.scanner-item[data-id=${id}`).show();
-    }
+    $(`.scanner-item[data-id=${id}`).show();
   };
 
   // зміна назви товара в перемикачі, відображення відповідного вибраного товару
@@ -187,6 +258,7 @@ $(document).ready(function() {
     let $this = $(this);
     let text = $this.text();
     let $dropdown = $(this).parents('#specialty-list');
+    let id = "";
 
     // добавляємо назву продукда для пошуку по обєкту
     productName = $this.attr('data-checked');
@@ -195,7 +267,6 @@ $(document).ready(function() {
     $scannerItems.hide();
 
     // відновлює дефолтне значення елементів
-    $nextBtn.addClass('active');
     checked1.attr("checked", false);
     checked2.attr("checked", false);
     checked3.attr("checked", false);
@@ -208,45 +279,59 @@ $(document).ready(function() {
 
     closeDropdown();
 
+    if($this.hasClass('features-less')){
+      $scannersContainer.addClass('features-less');
+    } else if($this.hasClass('features-none')){
+      $scannersContainer.addClass('features-none');
+    } else {
+      $scannersContainer.removeClass('features-less').removeClass('features-none');
+    }
+
+    // показати дефолтний сканер
+
     if($this.hasClass('checkbox-list')){
       // присвоюємо значення для методів вибору
       activeCheckbox = "checkboxList";
       twoStepActive();
       showCheckboxItems();
+      showScanners(productChecked[productName].default);
+      checked1.prop('checked', true);
+
     } else if($this.hasClass('one-checkbox')) {
       activeCheckbox = "oneCheckbox";
       twoStepActive();
       showCheckboxOne();
+      showScanners(productChecked[productName].default);
+
+    } else if($this.hasClass('checkbox-list-vet')) {
+      activeCheckbox = "checkboxListVet";
+      twoStepActive();
+      showCheckboxItems();
+      showScanners(productChecked[productName].default);
+      $checkbox3.addClass('active');
+
     } else {
       firstStepActive();
       showChangeItem($this);
     }
   });
 
-  // клік по кнопці активній кнопці next-btn
-  $filterProducts.on('click', '.next-btn.active', function () {
-    $(this).removeClass('active');
-
-    if(activeCheckbox === "checkboxList"){
-      showDetailItems();
-    } else if(activeCheckbox === "oneCheckbox"){
-      oneShowDetailItems();
-    }
-  });
-
   // перемикання по checkbox
-  $filterProducts.on('click', '.checkbox', function () {
+  $filterProducts.on('click', '.checkbox', function (e) {
     if(activeCheckbox === "checkboxList"){
+      if(!checked1.is(":checked") && !checked2.is(":checked") && !checked3.is(":checked")){
+        checked1.prop('checked', true);
+      }
       showDetailItems();
     } else if(activeCheckbox === "oneCheckbox"){
       oneShowDetailItems();
+    } else if(activeCheckbox === "checkboxListVet"){
+      showDetailItemsVet();
     }
   });
 
   // serch
   $('#search-product').on("keyup", function (e) {
-    $nextBtn.addClass('active');
-
     let val = $(this).val();
     val = val.toLowerCase();
 
